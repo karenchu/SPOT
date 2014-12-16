@@ -41,13 +41,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser(function(user, done) {
-	console.log("SERIALIZED JUST RAN!");
+	console.log("Working!");
 
 	done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done){
-	console.log("DESERIALIZED JUST RAN!");
+	console.log("Deserializing!");
 	db.user.find({
 		where: {
 			id: id
@@ -69,7 +69,7 @@ app.post("/users", function (req, res) {
 	console.log("POST /users");
 	var newUser = req.body.user;
 	console.log("New User:", newUser);
-	db.user.createSecure(newUser.email, newUser.password,
+	db.user.createSecure(newUser.email, newUser.password, newUser.firstName, newUser.lastName,
 		function () {
 			res.redirect("/signup");
 		},

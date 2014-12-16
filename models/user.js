@@ -32,21 +32,23 @@ module.exports = function(sequelize, DataTypes) {
         var hash = bcrypt.hashSync(password, salt);
         return hash;
       },
-      createSecure: function (email, password, error, success) {
+      createSecure: function (email, password, firstName, lastName, error, success) {
         var hash = this.encryptPassword(password);
         this.create({
           email: email,
-          password_digest: hash
+          password_digest: hash,
+          firstName: firstName,
+          lastName: lastName
         })
         .then(function (user) {
-          console.log("YES!")
+          console.log("Yay!")
           success(null, user, {message: "Logged In"});
       },
       function (err) {
         console.log("What?")
         console.log(arguments)
         console.log(err)
-        error(null, false, {message: "Something went wrong"});
+        error(null, false, {message: "Error"});
       });
     },
     authenticate: function (email, password, done) {
@@ -55,7 +57,7 @@ module.exports = function(sequelize, DataTypes) {
         if (user.checkPassword(password)) {
           done(null, user);
         } else {
-          done(null, false, {message: "oops"});
+          done(null, false, {message: "Huh?"});
         }
       },
       function (err) {
