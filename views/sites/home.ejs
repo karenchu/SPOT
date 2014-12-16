@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SPOT - Home</title>
+	<link rel="stylesheet" href="/stylesheets//bootstrap.min.css">
+</head>
+<body>
+	<% if (user) { %>
+    	Logged in as <%= user.firstName %><br>
+    	<a href="/logout">LOG OUT</a>
+	<% } else { %>
+	    <div>
+	    	<a href="/login">LOG IN</a>
+	    </div>
+	    <div>
+	    	<a href="/signup">SIGN UP</a>
+	    </div>
+  	<% } %>
+	<div id="logo">
+		<a href=""><img src=""></img></a>
+	</div>
+	<div id="description">
+		Dog-friendly establishment locator
+	</div>
+	<form action="/results" method="GET">
+		<input type="text" name="business" placeholder="business name or type">
+		<input type="text" name="location" placeholder="location">
+		<button>Search</button>
+	</form>
+	<nav>
+		<a href="">ABOUT SPOT</a>
+		<a href="">CONTACT US</a>
+		<a href="">HOW TO SUBMIT</a>
+	</nav>
+</body>
+</html>

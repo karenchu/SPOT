@@ -7,6 +7,22 @@
 	<div id="logo2">
 		<a href=""><img src=""></img></a>
 	</div>
+	<form action="/results" method="GET">
+		<input type="text" name="business" placeholder="business name or type">
+		<input type="text" name="location" placeholder="location">
+		<button>Search</button>
+	</form>
+	<% if (user) { %>
+    	Logged in as <%= user.firstName %><br>
+    	<a href="/logout">LOG OUT</a>
+	<% } else { %>
+	    <div>
+	    	<a href="/login">LOG IN</a>
+	    </div>
+	    <div>
+	    	<a href="/signup">SIGN UP</a>
+	    </div>
+  	<% } %>
 	<h2>About SPOT</h2>
     <div id="about">
 	    <p>No need to leave your best friend at home. SPOT is your dog-friendly establishment (restaurants, cafes, gyms, hotels, stores etc.) locator.</p>
