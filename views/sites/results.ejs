@@ -24,7 +24,17 @@
 	    </div>
   	<% } %>
 	<h2>Search Results</h2>
-	<%= location %>
+	    <% locations.forEach(function (location) { %>
+		<div>
+			<h1><%= location.name %></h1>
+    	</div>
+    	<div>
+    		<% for (var key in location.location) { %>
+    		<div>
+    			<%= key %>: <%= location.location[key] %>
+    			<% } %>
+    	</div>
+   <% }) %>
 	<nav>
 		<a href="">HOME</a>
 		<a href="">ABOUT SPOT</a>
