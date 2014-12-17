@@ -12,18 +12,10 @@ var yelp = require("yelp").createClient({
 	token_secret: "9P5iP9mk_cAALC8qttySRp6ulRg"
 });
 
-
-yelp.search({term: "food", location: "Montreal"}, function(error, data) {
-  console.log(error);
-  console.log(data);
-});
-
 yelp.business("{location}", function(error, data) {
   console.log(error);
   console.log(data);
 });
-
-
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -121,17 +113,49 @@ app.get("/", function (req, res) {
 	res.render("sites/home");	
 });
 
-app.get("/", function (req, res) {
-	var location = req.query.location;
-	request('http://api.yelp.com/v2/business/{location}', function (err, response, body) {
-		console.log(body);
-	var results = JSON.parse(body);
-	var searchResults = results.Search;
-		res.render("sites/results", {location: searchResults});	
+// app.get("/", function (req, res) {
+// 	var location = req.query.location;
+// 	request('http://api.yelp.com/v2/business/{location}', function (err, response, body) {
+// 		console.log(body);
+// 	var results = JSON.parse(body);
+// 	var searchResults = results.Search;
+// 		res.render("sites/results", {location: searchResults});	
+// 	});
+// });
+
+app.get("/about", function (req, res) {
+	if(req.user) {
+		res.render("sites/about", {user: req.user});
+	} else {
+		res.render("sites/about", {user: false});
+	}
+});
+
+app.get("/contact", function (req, res) {
+	if(req.user) {
+		res.render("sites/contact", {user: req.user});
+	} else {
+		res.render("sites/contact", {user: false});
+	}	
+});
+
+app.get("/howto", function (req, res) {
+	if(req.user) {
+		res.render("sites/howto", {user: req.user});
+	} else {
+		res.render("sites/howto", {user: false});
+	}
+});
+
+app.get("/results", function (req, res) {
+	yelp.search({term: req.query.business, location: req.query.location}, function(error, data) {
+	console.log(error);
+	console.log(data);
+	res.render("sites/results");
 	});
 });
 
 app.listen(3000, function() {
 	console.log(new Array("*").join());
 	console.log("STARTED ON localhost:3000");
-})
+});
