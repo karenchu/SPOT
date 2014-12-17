@@ -26,13 +26,27 @@
 	<h2>Search Results</h2>
 	    <% locations.forEach(function (location) { %>
 		<div>
-			<h1><%= location.name %></h1>
+			<h3><%= location.name %></h3>
     	</div>
     	<div>
-    		<% for (var key in location.location) { %>
     		<div>
-    			<%= key %>: <%= location.location[key] %>
-    			<% } %>
+    			<img src="<%= location.image_url %>"></a>
+    		</div>
+    		<div>
+    			<b>Phone Number:</b> <%= location.phone %>
+    		</div>
+    		<div>
+				<b>Address:</b><br>
+				<%= location.location.address %><br>
+				<%= location.location.city %>, <%= location.location.state_code %> <%= location.location.postal_code %><br>
+				<%= location.location.country_code %>
+	    	</div>
+	    	<div>
+				<b>Neighborhood(s):</b> <%= location.location.neighborhoods %>
+	    	</div>
+	    	<div>
+	    		<b>Categories:</b> <%= location.categories %>
+	    	</div>
     	</div>
    <% }) %>
 	<nav>
