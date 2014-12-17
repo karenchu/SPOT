@@ -151,7 +151,7 @@ app.get("/results", function (req, res) {
 	yelp.search({term: req.query.business, location: req.query.location}, function(error, data) {
 	console.log(error);
 	console.log(data);
-	res.render("sites/results");
+	res.render("sites/results", {user: req.user, location: data});
 	});
 });
 
