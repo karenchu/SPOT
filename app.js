@@ -193,7 +193,7 @@ app.post("/results/:yelp_id", function (req, res) {
 // 	// update record with (yes or no)
 // 	// save record
 // 	// redirect to _____ view
-app.listen(process.env.PORT || 3000), function() {
+app.listen(process.env.PORT || 3000, function() {
 	console.log(new Array("*").join());
 	console.log("STARTED ON localhost:3000");
 });
