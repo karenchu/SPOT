@@ -6,15 +6,10 @@ var express = require("express"),
 	app = express();
 
 var yelp = require("yelp").createClient({
-	consumer_key: "sOwjvBvlFOMkyq9NDg7UTg", 
-	consumer_secret: "K0y_tyBqJ5V1r2E0q5qRMjQlD2A",
-	token: "PFMuuMjh-dpokUZXQaGBNOMZnazCNlDR",
-	token_secret: "9P5iP9mk_cAALC8qttySRp6ulRg"
-});
-
-yelp.business("{location}", function(error, data) {
-  console.log(error);
-  console.log(data);
+	consumer_key: 		"sOwjvBvlFOMkyq9NDg7UTg", 
+	consumer_secret: 	"K0y_tyBqJ5V1r2E0q5qRMjQlD2A",
+	token: 				"PFMuuMjh-dpokUZXQaGBNOMZnazCNlDR",
+	token_secret: 		"9P5iP9mk_cAALC8qttySRp6ulRg"
 });
 
 app.use(express.static(__dirname + "/public"));
@@ -113,15 +108,7 @@ app.get("/", function (req, res) {
 	res.render("sites/home");	
 });
 
-// app.get("/", function (req, res) {
-// 	var location = req.query.location;
-// 	request('http://api.yelp.com/v2/business/{location}', function (err, response, body) {
-// 		console.log(body);
-// 	var results = JSON.parse(body);
-// 	var searchResults = results.Search;
-// 		res.render("sites/results", {location: searchResults});	
-// 	});
-// });
+
 
 app.get("/about", function (req, res) {
 	if(req.user) {
@@ -148,14 +135,67 @@ app.get("/howto", function (req, res) {
 });
 
 app.get("/results", function (req, res) {
-	yelp.search({term: req.query.business, location: req.query.location}, function(error, data) {
-	console.log(error);
-	console.log(data);
-	res.render("sites/results", {user: req.user, locations: data.businesses});
+
+	var loc = req.query.location || "san francisco";
+	yelp.search({term: req.query.business, location: loc}, function(error, data) {
+		var remappedResults = {}
+		var businessIds = data.businesses.map(function (loc) {
+			remappedResults[loc.id] = loc;
+			return loc.id;
+		});
+		db.dogfriendly.findAll({
+			where: {
+				yelp_id: businessIds
+			}
+		}).then(function (results) {
+			results.map(function (result) {
+				console.log(result.dog_friendly)
+				remappedResults[result.yelp_id].friendly = result.dog_friendly;
+			});
+			res.render("sites/results", {
+					user: 		req.user, 
+					locations: 	remappedResults
+				});
+		})
+
 	});
 });
 
-app.listen(3000, function() {
+
+
+app.post("/results/:yelp_id", function (req, res) {
+
+	var dogsTrue 	= req.body.dogs == "true" ? true: false;
+	var yelpId 		= req.params.yelp_id; 
+	var referer 	= req.get("referer");
+
+	db.dogfriendly.find({
+		where: {
+			yelp_id: yelpId
+		}
+	}).then(function (result) {
+		if (result){
+			result.dog_friendly = dogsTrue;
+			result.save().then(function (loc) {
+				res.redirect(referer);
+			});
+		} else {
+			db.dogfriendly.create({
+				yelp_id: 		yelpId,
+				dog_friendly: 	dogsTrue
+			}).then(function() {
+				res.redirect(referer);
+			});
+		}
+	})
+
+})
+// 	// update record with (yes or no)
+// 	// save record
+// 	// redirect to _____ view
+app.listen(process.env.PORT || 3000), function() {
 	console.log(new Array("*").join());
 	console.log("STARTED ON localhost:3000");
 });
+
+
