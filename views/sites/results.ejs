@@ -2,38 +2,122 @@
 <html>
 <head>
 	<title>SPOT - Search Results</title>
+	<link rel="stylesheet" href="/stylesheets//bootstrap.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="stylesheets/main.css">
+<script>
+	if(document.getElementById('dogs_OK').checked) {
+	} else(document.getElementById('NO_dogs').checked) {
+	};
+
+	var checked = checked === true;
+</script>
 </head>
 <body>
-	<div id="logo2">
-		<a href="/"><img src="http://i.imgur.com/7Je67an.jpg"></a>	
-	</div>
-	<form action="/results" method="GET">
-		<input type="text" name="business" placeholder="business name or type">
-		<input type="text" name="location" placeholder="location">
-		<button>Search</button>
-	</form>
-	<% if (user) { %>
-    	Logged in as <%= user.firstName %><br>
-    	<a href="/logout">LOG OUT</a>
-	<% } else { %>
-	    <div>
-	    	<a href="/login">LOG IN</a>
-	    </div>
-	    <div>
-	    	<a href="/signup">SIGN UP</a>
-	    </div>
-  	<% } %>
-	<h2>Search Results</h2>
-	    <% location.forEach(function (location) { %>
-		<div>
-    		<h4> <a href="/home/<%= location.yelpID %>"><%= location.location %></a></h4>
+	<div class="results">
+	<nav class="navbar navbar-inverse" role="navigation">
+  	<div class="container-fluid">
+    	<div class="navbar-header">
+      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        	<span class="sr-only">Toggle navigation</span>
+        	<span class="icon-bar"></span>
+        	<span class="icon-bar"></span>
+        	<span class="icon-bar"></span>
+      	</button>
+      	    <a class="navbar-brand" href="/">SPOT</a>
     	</div>
-   <% }) %>
-	<nav>
-		<a href="">HOME</a>
-		<a href="">ABOUT SPOT</a>
-		<a href="">CONTACT US</a>
-		<a href="">HOW TO SUBMIT</a>
+
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a href="/about">ABOUT SPOT</a></li>
+	        <li><a href="/contact">CONTACT US</a></li>
+	        <li><a href="/howto">HOW TO SUBMIT</a></li>
+	      </ul>
+
+			<form class="navbar-form navbar-left" role="search" action="/results" method="GET">
+				<div class="form-group">
+					<input type="text" name="business" class="form-control" placeholder="business name or type">
+				</div>
+				<div class="form-group">
+					<input type="text" name="location" class="form-control"  placeholder="location">
+				</div>
+			<button type="submit" class="btn btn-default-inverse">Search</button>
+			</form>
+
+	      <ul class="nav navbar-nav navbar-right">
+		    <% if (user) { %>
+		    	<div id="logged">Logged in as <%= user.firstName %></div>
+		    	<a href="/logout">LOG OUT</a>
+			<% } else { %>
+			    <div>
+			    	<a href="/login">LOG IN</a>
+			    </div>
+			    <div>
+			    	<a href="/signup">SIGN UP</a>
+			    </div>
+		  	<% } %>
+	      </ul>
+	    </div>
+	  </div>
 	</nav>
+
+	<div class="container" id="resultssection">
+	<h2>Search Results</h2>
+	    <ol>
+	    <% for (var yelpId in locations) { %>
+	    	<% var location = locations[yelpId] %>
+		<div>
+			<h3><li><a href="<%= location.url %>" target="_"><%= location.name %></a></h3>
+    	</div>
+    	<div>
+    		<div id="yelpimg">
+    			<img src="<%= location.image_url %>"></a>
+    		</div>
+    		<div>
+    			<b><u>Phone Number</u>:</b> <%= location.phone %>
+    		</div>
+    		<div>
+				<b><u>Address</u>:</b><br>
+				<%= location.location.address %><br>
+				<%= location.location.city %>, <%= location.location.state_code %> <%= location.location.postal_code %><br>
+				<%= location.location.country_code %>
+	    	</div>
+	    	<div>
+				<b><u>Neighborhood(s)</u>:</b> <%= location.location.neighborhoods %>
+	    	</div>
+	    	<div>
+	    		<b><u>Categories</u>:</b> <%= location.categories %>
+	    	</div>
+	    	<div>
+	    		<b><u>Dog Friendly?</u></b>
+
+	    		<% if (location.friendly) { %> YES
+				<% } %>
+			</div>
+			<br>
+				<% if (user) { %>
+				<form name="dogfriendly" action="/results/<%= location.id %>" method="post">
+		    		<label class="radio-inline">
+						<input type="radio" name="dogs" id="dogs_OK" value="true"/> <div>YES</div>
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="dogs" id="NO_dogs" value="false"/> <div>NO</div>
+					</label>
+					<br>
+					<br>
+					<button class="btn btn-default-inverse" type="submit">Save</button>
+				</form>
+				<% } else { %>
+					<div>
+		    			<a href="/login">LOG IN</a> to see if it's dog friendly.
+		    		</div>
+				<% } %>	
+	    	</div>
+	   	<% } %>
+	</li>
+	</ol>
+   <br>
+	</div>
+	</div>
 </body>
 </html>

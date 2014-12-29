@@ -1,0 +1,106 @@
+body {
+	margin: 0 auto;
+	font-family: 'Lato', sans-serif;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+ #logged {
+ 	color: white;
+ }
+
+.about {
+	background: url('http://i.imgur.com/M2lH8Tk.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 1401px;
+}
+
+#aboutspot {
+	background-color: rgba(245, 245, 245, 0.7);
+	border-radius: 10px;
+}
+
+.contact {
+ 	background: url('http://i.imgur.com/rn8dGcC.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 1401px;
+ }
+
+#contactinfo {
+	background-color: rgba(245, 245, 245, 0.7);
+	border-radius: 10px;
+}
+
+.howto {
+	background: url('http://i.imgur.com/gmCbHWY.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 1401px;
+}
+
+#howtoinstructions {
+	background-color: rgba(245, 245, 245, 0.7);
+	border-radius: 10px;
+}
+
+.results {
+	background: url('http://i.imgur.com/XnoTK5z.jpg?1') no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#resultssection {
+	background-color: rgba(245, 245, 245, 0.7);
+	border-radius: 10px;
+}
+
+#yelpimg img{
+    height: 200px;
+}
+
+u {    
+    border-bottom: 1px dotted #000;
+    text-decoration: none;
+}
+
+.login {
+	background: url('http://i.imgur.com/8dlPEDD.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 1401px;
+}
+
+#loginstuff {
+	background-color: rgba(245, 245, 245, 0.7);
+	border-radius: 10px;
+}
+
+.signup {
+	background: url('http://i.imgur.com/qy0IBwj.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 1401px;
+}
+
+#signupform {
+	background-color: rgba(245, 245, 245, 0.7);
+	border-radius: 10px;
+}

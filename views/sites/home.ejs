@@ -1,36 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SPOT - Home</title>
 	<link rel="stylesheet" href="/stylesheets//bootstrap.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
-	<% if (user) { %>
-    	Logged in as <%= user.firstName %><br>
-    	<a href="/logout">LOG OUT</a>
-	<% } else { %>
-	    <div>
-	    	<a href="/login">LOG IN</a>
+	<nav class="navbar navbar-inverse" role="navigation">
+  	<div class="container-fluid">
+    	<div class="navbar-header">
+      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        	<span class="sr-only">Toggle navigation</span>
+        	<span class="icon-bar"></span>
+        	<span class="icon-bar"></span>
+        	<span class="icon-bar"></span>
+      	</button>
+    	</div>
+
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a href="/about">ABOUT SPOT</a></li>
+	        <li><a href="/contact">CONTACT US</a></li>
+	        <li><a href="/howto">HOW TO SUBMIT</a></li>
+	      </ul>
+
+	      <ul class="nav navbar-nav navbar-right">
+		    <% if (user) { %>
+		    	<div id="logged">Logged in as <%= user.firstName %></div>
+		    	<a href="/logout">LOG OUT</a>
+			<% } else { %>
+			    <div>
+			    	<a href="/login">LOG IN</a>
+			    </div>
+			    <div>
+			    	<a href="/signup">SIGN UP</a>
+			    </div>
+		  	<% } %>
+	      </ul>
 	    </div>
-	    <div>
-	    	<a href="/signup">SIGN UP</a>
-	    </div>
-  	<% } %>
+	  </div>
+	</nav>
 	<div id="logo">
-		<a href="/"><img src="http://i.imgur.com/7Je67an.jpg"></a>
+		<a href="/"><img class="center-block" src="http://i.imgur.com/7Je67an.jpg"></a>
 	</div>
-	<div id="description">
+	<div class="text-center" id="description">
 		Dog-friendly establishment locator
 	</div>
-	<form action="/results" method="GET">
-		<input type="text" name="business" placeholder="business name or type">
-		<input type="text" name="location" placeholder="location">
-		<button>Search</button>
+	<br>
+	<div class="text-center">
+	<form class="form-inline" action="/results" method="GET">
+		<div class="form-group">
+			<input type="text" name="business" class="form-control" placeholder="business name or type">
+		</div>
+		<div class="form-group">
+			<input type="text" name="location" class="form-control"  placeholder="location">
+		</div>
+		<button class="btn btn-inverse">Search</button>
 	</form>
-	<nav>
-		<a href="/about">ABOUT SPOT</a>
-		<a href="/contact">CONTACT US</a>
-		<a href="/howto">HOW TO SUBMIT</a>
-	</nav>
+	</div>
 </body>
 </html>
