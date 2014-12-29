@@ -72,7 +72,7 @@ app.get("/users/:id", function (req, res) {
 	var id = req.params.id;
 	db.user.find(id)
 		.then(function (user) {
-			res.render("users/show", {user: user});
+			res.render("users/show",{user: user});
 		})
 		.error(function () {
 			res.redirect("/signup");
@@ -161,8 +161,6 @@ app.get("/results", function (req, res) {
 	});
 });
 
-
-
 app.post("/results/:yelp_id", function (req, res) {
 
 	var dogsTrue 	= req.body.dogs == "true" ? true: false;
@@ -190,12 +188,8 @@ app.post("/results/:yelp_id", function (req, res) {
 	})
 
 })
-// 	// update record with (yes or no)
-// 	// save record
-// 	// redirect to _____ view
+
 app.listen(process.env.PORT || 3000, function() {
 	console.log(new Array("*").join());
 	console.log("STARTED ON localhost:3000");
 });
-
-
