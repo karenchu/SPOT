@@ -2,65 +2,155 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SPOT - Home</title>
 	<link rel="stylesheet" href="/stylesheets//bootstrap.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="stylesheets/main.css">
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="scrollup.js"></script>
+	<script type="text/javascript" src="scrolldown.js"></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
 </head>
 <body>
-	<nav class="navbar navbar-inverse" role="navigation">
-  	<div class="container-fluid">
-    	<div class="navbar-header">
-      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        	<span class="sr-only">Toggle navigation</span>
-        	<span class="icon-bar"></span>
-        	<span class="icon-bar"></span>
-        	<span class="icon-bar"></span>
-      	</button>
-    	</div>
 
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li><a href="/about">ABOUT SPOT</a></li>
-	        <li><a href="/contact">CONTACT US</a></li>
-	        <li><a href="/howto">HOW TO SUBMIT</a></li>
-	      </ul>
+	<div class="fixed-bar animated-quick">
+		<div class="container" id="navwidth">
+			<div class="row">
+				<nav class="sixcol">
+					<ul id="menu-main-navigation" class="menu">
+						<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-0">
+							<a href="/">HOME</a>
+						</li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1">
+        					<a href="/about">ABOUT</a>
+        				</li>
+        				<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2 current_page_item menu-item-2">
+        					<a href="/contact">CONTACT</a>
+	        			</li>
+	        			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3">
+	        				<a href="/howto">HOW TO SUBMIT</a>
+	       				 </li>
+						<% if (user) { %>
+							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4" id="logged">
+						   		<a class="small">Hello <%= user.firstName %>!</a>
+						   		<a href="/logout">LOGOUT</a>
+						    </li>
+						<% } else { %>
+							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5">
+						    	<a href="/login">LOGIN</a>
+						    </li>
+						 	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6">
+						    	<a href="/signup">SIGNUP</a>
+						    </li>
+					  	<% } %>
+					  	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7">
+					  		<form class="form-inline" action="/results" method="GET">
 
-	      <ul class="nav navbar-nav navbar-right">
-		    <% if (user) { %>
-		    	<div id="logged">Logged in as <%= user.firstName %></div>
-		    	<a href="/logout">LOG OUT</a>
-			<% } else { %>
-			    <div>
-			    	<a href="/login">LOG IN</a>
-			    </div>
-			    <div>
-			    	<a href="/signup">SIGN UP</a>
-			    </div>
-		  	<% } %>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-	<div id="logo">
-		<a href="/"><img class="center-block" src="http://i.imgur.com/7Je67an.jpg"></a>
-	</div>
-	<div class="text-center" id="description">
-		Dog-friendly establishment locator
-	</div>
-	<br>
-	<div class="text-center">
-	<form class="form-inline" action="/results" method="GET">
-		<div class="form-group">
-			<input type="text" name="business" class="form-control" placeholder="business name or type">
+								<div class="form-group">
+									<input type="text" name="business" class="form-control" placeholder="business name or type">
+								</div>
+								<div class="form-group">
+									<input type="text" name="location" class="form-control"  placeholder="location">
+								</div>
+								<button class="btn btn-inverse">SEARCH</button>
+							</form>
+						</li>
+					</ul>
+				</nav>	
+				<div class="fourcol last">
+					<a href="#" id="back-to-top" title="Back To Top">Back To Top</a>
+				</div>				
+			</div>
 		</div>
-		<div class="form-group">
-			<input type="text" name="location" class="form-control"  placeholder="location">
-		</div>
-		<button class="btn btn-inverse">Search</button>
-	</form>
 	</div>
+
+	<header class="splash" id="home">
+		<div class="col-lg-6 col-lg-offset-3 text-center">
+	    	<nav class="navbar transparent" role="navigation">
+		    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1">
+		        		<a href="/about">ABOUT</a>
+		        	</li>
+		        	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2">
+		        		<a href="javascript:scrollToBottom()">CONTACT</a>
+			        </li>
+			        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3">
+			        	<a href="/howto">HOW TO SUBMIT</a>
+			        </li>
+					|
+					<% if (user) { %>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4" id="logged">
+					    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hello <%= user.firstName %>!
+					    	<a href="/logout">LOGOUT</a>
+					    </li>
+					<% } else { %>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5">
+					    	<a href="/login">LOGIN</a>
+					    </li>
+					 	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6">
+					    	<a href="/signup">SIGNUP</a>
+					    </li>   
+				  	<% } %>
+	 			</div>
+	 		</nav>
+	 	</div>		
+		
+		<div class="text-center" id="logo">
+			<a href="/">SPOT</a>
+		</div>
+		
+		<div class="row"></div>
+		<br><br><br><br>
+		<div class="row">
+			<div class="text-center" id="description">
+				A DOG-FRIENDLY ESTABLISHMENT LOCATOR
+			</div>
+			<br>
+			<div class="text-center">
+				<form class="form-inline" action="/results" method="GET">
+					<div class="form-group">
+						<input type="text" name="business" class="form-control" placeholder="business name or type">
+					</div>
+					<div class="form-group">
+						<input type="text" name="location" class="form-control" placeholder="location">
+					</div>
+					<button class="btn btn-inverse">SEARCH</button>
+				</form>
+			</div>
+		</div>
+	</header>
+
+	<footer>
+        <div class="footer-inner">
+            <div class="container">
+            	<div class="contact">
+            		<span class="site-address">SPOT, 123 5th Avenue, San Francisco, CA 54321</span>
+            		<span rel="tel" class="site-phone">415-555-1212</span>
+            		<a href="mailto:spot@spot.com" class="site-email">spot@spot.com</a></div>
+          		</div>
+	        </div>
+
+	        <div class="container" id="spothq">
+		    	<div id="map"></div>
+			</div>
+
+	        <div class="container">
+          		<div class="row small"></div>
+					<div class="twelvecol">
+						<small>Copyright &copy; 2015, Karen Chu</small>
+					</div>
+			</div>
+		</div>
+    </footer>
+
+	<script>
+		L.mapbox.accessToken = 'pk.eyJ1Ijoib2NlYW5jaGlsZDYzNyIsImEiOiJxVkhhRTg4In0.Tt6s5ijiS4a3ElrxYg8sSg';
+		var map = L.mapbox.map('map', 'oceanchild637.l6bgnkcj')
+	</script>
+
 </body>
 </html>

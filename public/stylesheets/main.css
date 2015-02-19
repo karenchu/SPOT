@@ -1,106 +1,530 @@
 body {
 	margin: 0 auto;
 	font-family: 'Lato', sans-serif;
+    color: black;
 }
 
-.center-block {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
- }
+/* Header Specific */
+header nav { 
+    margin: 6.3% 0 0 0; 
+    text-align: center; 
+}
 
- #logged {
- 	color: white;
- }
+header nav li { 
+    display: inline; 
+}
 
-.about {
-	background: url('http://i.imgur.com/M2lH8Tk.jpg') no-repeat center center fixed;
-	-webkit-background-size: cover;
+header nav li a { 
+    display: inline-block; 
+    padding: .7em 1.5em; 
+    text-transform: uppercase;
+    position: relative; 
+}
+
+header nav li a:hover, header.splash nav li a:hover { 
+    top: -.6em;
+}
+
+header.splash nav li.current-menu-item a, header nav li.current-menu-item a, header.splash 
+nav li.current_page_parent a, header nav li.current_page_parent a { 
+    color: #FD661E; 
+}
+
+/* Footer Specific */
+footer { 
+    background: #181718; 
+    padding: 2em 0; 
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.8);
+    text-align: center;
+}
+
+footer a {
+    color: rgba(255,255,255,.8);
+    text-decoration: underline;
+}
+
+footer h2, footer h3 { 
+    color: #fff; 
+}
+
+footer h2 { 
+    font-size: 2em; 
+    margin: .2em 0 .5em; 
+}
+
+/*footer h3 { 
+    font-size: 1.5em; 
+    margin: .2em 0 1em; 
+}*/
+
+footer .row:first-child { 
+    border-bottom: 1px solid #222222; 
+    border-bottom: 1px solid rgba(255,255,255,.1); 
+    margin-bottom: .4em; 
+    padding-bottom: 1em; 
+}
+
+/* Fixed Bar */
+.fixed-bar { 
+    display: none;
+    background: #fff; 
+    box-shadow: 0px 0px 1px #000; 
+    box-shadow: 0px 0px 1px rgba(0,0,0,.5); 
+    position: fixed; 
+    z-index: 999; 
+    width: 100%; 
+    opacity: .9;
+}
+
+.fixed-bar nav ul { 
+    padding: .7em 0 0 0;
+}
+
+.fixed-bar nav li { 
+    display: inline; 
+}
+
+.fixed-bar nav li a { 
+    color: #2F2F2F; 
+    text-decoration: none; 
+    text-transform: uppercase; 
+    margin: 0 2em 0 0; 
+    font-weight: 500; 
+    font-size: 1.3em; 
+    float: left; 
+    -webkit-transition: color .3s linear; 
+}
+
+.fixed-bar nav li a:hover { 
+    color: #C6C6C6; 
+    text-decoration: none; 
+    -webkit-transition: color .3s linear; 
+}
+
+.fixed-bar nav li.current-menu-item a, .fixed-bar nav li.current_page_parent a { 
+    color: #FF681F; 
+}
+
+.small {
+    text-transform: none !important;
+    color: #FD661E !important;
+}
+
+#navwidth {
+    width: 1250px;
+}
+
+.fixed-bar #back-to-top { 
+    float: right; 
+    margin-bottom: .8em; 
+    width: 15px; 
+    height: 24px; 
+    background: url('http://i.imgur.com/qFhqNWA.png') no-repeat 0 0; 
+    text-indent: -9999px; 
+}
+
+.fixed-bar #back-to-top:hover { 
+    background-position: 0 -24px; 
+}
+
+.fourcol, .sixcol {
+    margin-right: 1.0%;
+    float: center;
+    min-height: 1px;
+    max-height: 8px;
+}
+
+#home {
+    background: url('http://i.imgur.com/SQErLQs.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     height: 1401px;
 }
 
-#aboutspot {
-	background-color: rgba(245, 245, 245, 0.7);
-	border-radius: 10px;
+#logo {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 12em;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #FD661E;
+}
+
+.btn {
+    background-color: #FD661E;
+}
+
+.btn:hover {
+    background-color: #2F2F2F;
+    color: #FD661E;
+}
+
+.header-inner, .footer-inner, .pre-footer-inner {
+    width: auto;
+    margin: auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#about {
+    background-color: #2F2F2F;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 1401px;
+    color: rgba(255,255,255,.8);
+}
+
+.img-about {
+    width: 200px;
+    height: 200px;
+    background-image: url('http://i.imgur.com/WB00y41.jpg?2');
+    background-size: cover;
+    display: block;
+    border-radius: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#here {
+    border-bottom: 1px dotted #000;
 }
 
 .contact {
- 	background: url('http://i.imgur.com/rn8dGcC.jpg') no-repeat center center fixed;
-	-webkit-background-size: cover;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 1401px;
- }
-
-#contactinfo {
-	background-color: rgba(245, 245, 245, 0.7);
-	border-radius: 10px;
+    height: 700px;
 }
 
-.howto {
-	background: url('http://i.imgur.com/gmCbHWY.jpg') no-repeat center center fixed;
-	-webkit-background-size: cover;
+#howto {
+    background: url('http://i.imgur.com/gmCbHWY.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     height: 1401px;
 }
 
-#howtoinstructions {
-	background-color: rgba(245, 245, 245, 0.7);
-	border-radius: 10px;
+#instructions {
+    text-align: center; 
+    list-style-position: inside;
 }
 
-.results {
-	background: url('http://i.imgur.com/XnoTK5z.jpg?1') no-repeat center center fixed;
-	-webkit-background-size: cover;
+#screenshots {
+    width: 25%;
+    height: 25%;
+    padding: 10px;
+    border: black solid;
+    border-width: thin;
+}
+
+#signup {
+    background: url('http://i.imgur.com/qy0IBwj.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 1401px;
+}
+
+#page {
+    background-color: rgba(245, 245, 245, 0.7);
+    width: 100%;
+    height: 100%;
+}
+
+#login {
+    background: url('http://i.imgur.com/8dlPEDD.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 1401px;
+}
+
+.center {
+    text-align: center;
+} 
+
+.center form {
+    display: inline-block;
+}
+
+#results {
+    background: url('http://i.imgur.com/XnoTK5z.jpg?1') no-repeat center center fixed;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 
-#resultssection {
-	background-color: rgba(245, 245, 245, 0.7);
-	border-radius: 10px;
+#logged {
+    color: #FD661E;
 }
 
-#yelpimg img{
-    height: 200px;
+#spothq {
+    text-align: center;
+    padding: 0 0 0 0;
+    border: 0 0 0 0;
+    margin: -50% 10% 100% 10%;
 }
 
-u {    
+#map { 
+    position: absolute;
+    height: 170%; 
+    width: 80%; 
+}
+
+/*u {    
     border-bottom: 1px dotted #000;
     text-decoration: none;
 }
 
-.login {
-	background: url('http://i.imgur.com/8dlPEDD.jpg') no-repeat center center fixed;
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 1401px;
+
+
+*/
+.animated {
+    -webkit-animation: 1s ease;
+       -moz-animation: 1s ease;
+        -ms-animation: 1s ease;
+         -o-animation: 1s ease;
+            animation: 1s ease;
+    -webkit-animation-fill-mode: both;
+       -moz-animation-fill-mode: both;
+        -ms-animation-fill-mode: both;
+         -o-animation-fill-mode: both;
+            animation-fill-mode: both;
 }
 
-#loginstuff {
-	background-color: rgba(245, 245, 245, 0.7);
-	border-radius: 10px;
+.animated-quick {
+    -webkit-animation: .5s ease;
+       -moz-animation: .5s ease;
+        -ms-animation: .5s ease;
+         -o-animation: .5s ease;
+            animation: .5s ease;
+    -webkit-animation-fill-mode: both;
+       -moz-animation-fill-mode: both;
+        -ms-animation-fill-mode: both;
+         -o-animation-fill-mode: both;
+            animation-fill-mode: both;
 }
 
-.signup {
-	background: url('http://i.imgur.com/qy0IBwj.jpg') no-repeat center center fixed;
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 1401px;
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    -moz-animation-name: fadeIn;
+    -ms-animation-name: fadeIn;
+    -o-animation-name: fadeIn;
+    animation-name: fadeIn;
 }
 
-#signupform {
-	background-color: rgba(245, 245, 245, 0.7);
-	border-radius: 10px;
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(20px);
+    }
+    
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+@-moz-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -moz-transform: translateY(20px);
+    }
+    
+    100% {
+        opacity: 1;
+        -moz-transform: translateY(0);
+    }
+}
+
+@-ms-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -ms-transform: translateY(20px);
+    }
+    
+    100% {
+        opacity: 1;
+        -ms-transform: translateY(0);
+    }
+}
+
+@-o-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -o-transform: translateY(20px);
+    }
+    
+    100% {
+        opacity: 1;
+        -o-transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+    -moz-animation-name: fadeOut;
+    -ms-animation-name: fadeOut;
+    -o-animation-name: fadeOut;
+    animation-name: fadeOut;
+}
+
+@-webkit-keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+    
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(-20px);
+    }
+}
+
+@-moz-keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        -moz-transform: translateY(0);
+    }
+    
+    100% {
+        opacity: 0;
+        -moz-transform: translateY(-20px);
+    }
+}
+
+@-ms-keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        -ms-transform: translateY(0);
+    }
+    
+    100% {
+        opacity: 0;
+        -ms-transform: translateY(-20px);
+    }
+}
+
+@-o-keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        -o-transform: translateY(0);
+    }
+    
+    100% {
+        opacity: 0;
+        -o-transform: translateY(-20px);
+    }
+}
+
+@keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.fadeOutUp {
+    -webkit-animation-name: fadeOutUp;
+    -moz-animation-name: fadeOutUp;
+    -ms-animation-name: fadeOutUp;
+    -o-animation-name: fadeOutUp;
+    animation-name: fadeOutUp;
+}
+
+@-webkit-keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+    
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(20px);
+    }
+}
+
+@-moz-keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+        -moz-transform: translateY(0);
+    }
+    
+    100% {
+        opacity: 0;
+        -moz-transform: translateY(20px);
+    }
+}
+
+@-ms-keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+        -ms-transform: translateY(0);
+    }
+    
+    100% {
+        opacity: 0;
+        -ms-transform: translateY(20px);
+    }
+}
+
+@-o-keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+        -o-transform: translateY(0);
+    }
+    
+    100% {
+        opacity: 0;
+        -o-transform: translateY(20px);
+    }
+}
+
+@keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
 }

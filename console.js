@@ -1,4 +1,4 @@
-ssvar repl = require('repl');
+var repl = require('repl');
 var db = require('./models');
 
 var newRepl = repl.start("karen's app > ");

@@ -1,70 +1,145 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SPOT - Log In</title>
-	<link rel="stylesheet" href="/stylesheets//bootstrap.min.css">
-	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="stylesheets/main.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SPOT - Login</title>
+    <link rel="stylesheet" href="/stylesheets//bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="stylesheets/main.css">
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="scrollup.js"></script>
+	<script type="text/javascript" src="scrolldown.js"></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+</head>
 </head>
 <body>
-	<div class="login">
-	<nav class="navbar navbar-inverse" role="navigation">
-  	<div class="container-fluid">
-    	<div class="navbar-header">
-      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        	<span class="sr-only">Toggle navigation</span>
-        	<span class="icon-bar"></span>
-        	<span class="icon-bar"></span>
-        	<span class="icon-bar"></span>
-      	</button>
-      	    <a class="navbar-brand" href="/">SPOT</a>
-    	</div>
-
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="/about">ABOUT SPOT<span class="sr-only">(current)</span></a></li>
-	        <li><a href="/contact">CONTACT US</a></li>
-	        <li><a href="/howto">HOW TO SUBMIT</a></li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-	<br>
-	<div class="container" id="loginstuff">
-		<br>
-		<form class="form-horizontal" method="post" action="/login">
-		  <div class="form-group">
-		    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-		    <div class="col-sm-10">
-		      <input type="email" class="form-control" name="user[email]" placeholder="Email">
-		    </div>
-		  </div><br>
-		  <div class="form-group">
-		    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-		    <div class="col-sm-10">
-		      <input type="password" class="form-control" name="user[password]" placeholder="Password">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <div class="col-sm-offset-2 col-sm-10">
-		      <div class="checkbox">
-		        <label>
-		          <input type="checkbox"> Remember me
-		        </label>
-		      </div>
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <div class="col-sm-offset-2 col-sm-10">
-		      <button type="submit" class="btn btn-default-inverse">Log In</button>
-		    </div>
-		  </div>
-			<div class="col-sm-offset-2">
-				Not a user? Sign up <a href="/signup">here</a>.
+	
+	<div class="fixed-bar animated-quick">
+	    <div class="container">
+	      	<div class="row">
+	        	<nav class="sixcol">
+	          		<ul id="menu-main-navigation" class="menu">
+	            		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-0">
+	              			<a href="/">HOME</a>
+	            		</li>
+			            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1">
+			              	<a href="/about">ABOUT</a>
+			            </li>
+			            <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2 current_page_item menu-item-2">
+			              	<a href="/contact">CONTACT</a>
+			            </li>
+			            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3">
+			              	<a href="/howto">HOW TO SUBMIT</a>
+			            </li>
+			            
+			            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7">
+			              	<form class="form-inline" action="/results" method="GET">
+			              		<div class="form-group">
+			                		<input type="text" name="business" class="form-control" placeholder="business name or type">
+			              		</div>
+			              		<div class="form-group">
+			                		<input type="text" name="location" class="form-control"  placeholder="location">
+			              		</div>
+			              		<button class="btn btn-inverse">SEARCH</button>
+			              	</form>
+			            </li>
+			        </ul>
+		        </nav>  
+	        	<div class="fourcol last">
+	          		<a href="#" id="back-to-top" title="Back To Top">Back To Top</a>
+	        	</div>        
 	      	</div>
+	    </div>
+  	</div>
+
+	<header class="splash" id="login">
+	    <div class="container" id="page">
+		    <div class="col-lg-6 col-lg-offset-3 text-center">
+		        <nav class="navbar transparent" role="navigation">
+		            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		              	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1">
+		                	<a href="/about">ABOUT</a>
+		              	</li>
+		              	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2">
+		                	<a href="javascript:scrollToBottom()">CONTACT</a>
+		              	</li>
+		              	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3">
+		                	<a href="/howto">HOW TO SUBMIT</a>
+		              	</li>
+		          </div>
+		        </nav>
+		    </div> 
+
+    		<div class="text-center" id="logo">
+              <a href="/">SPOT</a>
+            </div>   
+
 	      	<br>
-		</form>
-	</div>
-	</div>
+	     
+			<div class="row"></div>
+	      	<div class="row">
+	      		<div class="span6 center">
+					<div class="container" id="loginform">
+						<form class="form-horizontal" method="post" action="/login">
+						  <div class="form-group">
+						    <label for="inputEmail3" class="control-label">Email</label>
+            				<div class="col-xs-12 col-sm-16">
+						      <input type="email" class="form-control" name="user[email]" placeholder="Email">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword3" class="control-label">Password</label>
+    				        <div class="col-xs-12 col-sm-16">
+						      <input type="password" class="form-control" name="user[password]" placeholder="Password">
+						    </div>
+						  </div>
+						  <div class="form-group">
+            				<div class="col-xs-12 col-sm-16">
+						      <button type="submit" class="btn btn-default-inverse">Log In</button>
+						    </div>
+						  </div>
+
+								Not a user? Sign up <a href="/signup" id="here">here</a>.
+
+					      	<br>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<footer>
+        <div class="footer-inner">
+            <div class="container">
+            	<div class="contact">
+            		<span class="site-address">SPOT, 123 5th Avenue, San Francisco, CA 54321</span>
+            		<span rel="tel" class="site-phone">415-555-1212</span>
+            		<a href="mailto:spot@spot.com" class="site-email">spot@spot.com</a></div>
+          		</div>
+	        </div>
+
+	        <div class="container" id="spothq">
+		    	<div id="map"></div>
+			</div>
+
+	        <div class="container">
+          		<div class="row small"></div>
+					<div class="twelvecol">
+						<small>Copyright &copy; 2015, Karen Chu</small>
+					</div>
+			</div>
+		</div>
+    </footer>
+
+	<script>
+		L.mapbox.accessToken = 'pk.eyJ1Ijoib2NlYW5jaGlsZDYzNyIsImEiOiJxVkhhRTg4In0.Tt6s5ijiS4a3ElrxYg8sSg';
+		var map = L.mapbox.map('map', 'oceanchild637.l6bgnkcj')
+	</script>
+
 </body>
 </html>

@@ -3,6 +3,7 @@ var express = require("express"),
 	db = require("./models"),
   	passport = require("passport"),
   	session = require("cookie-session"),
+  	cheerio = require("cheerio"),
 	app = express();
 
 var yelp = require("yelp").createClient({
@@ -118,13 +119,6 @@ app.get("/about", function (req, res) {
 	}
 });
 
-app.get("/contact", function (req, res) {
-	if(req.user) {
-		res.render("sites/contact", {user: req.user});
-	} else {
-		res.render("sites/contact", {user: false});
-	}	
-});
 
 app.get("/howto", function (req, res) {
 	if(req.user) {
@@ -138,6 +132,7 @@ app.get("/results", function (req, res) {
 
 	var loc = req.query.location || "san francisco";
 	yelp.search({term: req.query.business, location: loc}, function(error, data) {
+		console.log("THE DATA", JSON.stringify(data.businesses[0]));
 		var remappedResults = {}
 		var businessIds = data.businesses.map(function (loc) {
 			remappedResults[loc.id] = loc;

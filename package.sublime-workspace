@@ -1,0 +1,285 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"do",
+				"dogsTrue"
+			],
+			[
+				"re",
+				"referer"
+			],
+			[
+				"dog",
+				"dog_friendly"
+			],
+			[
+				"yl",
+				"yelpId"
+			],
+			[
+				"yel",
+				"yelp_id"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"lo",
+				"locations"
+			],
+			[
+				"bu",
+				"businessIds"
+			],
+			[
+				"bus",
+				"businesses"
+			],
+			[
+				"loca",
+				"location"
+			],
+			[
+				"yelpd",
+				"yelp_id"
+			],
+			[
+				"la",
+				"location"
+			],
+			[
+				"new",
+				"newUser"
+			],
+			[
+				"chan",
+				"changePass"
+			],
+			[
+				"salt",
+				"salt"
+			],
+			[
+				"articles",
+				"articles_app"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 147.0,
+		"selected_items":
+		[
+			[
+				"set java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"set jav",
+				"Set Syntax: JavaScript"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/karenachu/Desktop/GA/project_two/,",
+		"/Users/karenachu/Desktop/GA/SPOT/views/sites/submissions.ejs",
+		"/Users/karenachu/Desktop/GA/SPOT/console.js",
+		"/Users/karenachu/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/karenachu/Desktop/GA/SPOT/models/index.js",
+		"/Users/karenachu/Desktop/GA/SPOT/config/config.json",
+		"/Users/karenachu/Desktop/GA/SPOT/models/dogfriendly.js",
+		"/Users/karenachu/Desktop/GA/SPOT/migrations/20141217160945-create-dogfriendly.js",
+		"/Users/karenachu/Desktop/GA/SPOT/models/user.js",
+		"/Users/karenachu/Desktop/GA/SPOT/migrations/20141215121640-create-user.js",
+		"/Users/karenachu/Desktop/GA/SPOT/node_modules/yelp/demo/yelp.js",
+		"/Users/karenachu/Desktop/GA/SPOT/public/stylesheets/bootstrap.min.css",
+		"/Users/karenachu/Desktop/GA/SPOT/public/stylesheets/main.css",
+		"/Users/karenachu/Desktop/GA/SPOT/package.json",
+		"/Users/karenachu/Desktop/GA/SPOT/views/sites/index.ejs",
+		"/Users/karenachu/gitLab/blog_app/config/config.json",
+		"/Users/karenachu/gitLab/blog_app/migrations/20141210174838-create-post.js",
+		"/Users/karenachu/gitLab/blog_app/migrations/20141210174800-create-author.js",
+		"/Users/karenachu/gitLab/blog_app/migrations/20141211170005-add_author_id_to_posts.js",
+		"/Users/karenachu/gitLab/auth_homework/views/site/index.ejs.html",
+		"/Users/karenachu/gitLab/auth_homework/package.json",
+		"/Users/karenachu/gitLab/auth_example",
+		"/Users/karenachu/gitLab/authEx/user.js",
+		"/Users/karenachu/gitLab/user.js",
+		"/Users/karenachu/Desktop/GA/Notes/12.08.js",
+		"/Users/karenachu/gitLab/news_feed_3/config/config.json",
+		"/Users/karenachu/gitLab/news_feed_3/app.js",
+		"/Users/karenachu/gitLab/news_feed_3/package.json",
+		"/Users/karenachu/gitLab/news_feed_3/schema.sql",
+		"/Users/karenachu/gitLab/new_feed_2/views/about/new.ejs",
+		"/Users/karenachu/gitLab/new_feed_2/schema.sql",
+		"/Users/karenachu/.bash_profile",
+		"/Users/karenachu/Desktop/GA/Notes/12.02.js",
+		"/Users/karenachu/gitLab/news_feed/project/views/articles/new.ejs",
+		"/Users/karenachu/gitLab/news_feed/project/index.js",
+		"/Users/karenachu/Desktop/GA/Notes/12.01.js",
+		"/Users/karenachu/Desktop/GA/Notes/11.24.js",
+		"/Users/karenachu/gitLab/apartmentLab/test/property_types/property_test.js",
+		"/Users/karenachu/gitLab/tictactoe_js/tictactoe.html",
+		"/Users/karenachu/gitLab/iterators_lab/index_of_test_solution.js",
+		"/Users/karenachu/Desktop/GA/new_project_two/index_of_test.js",
+		"/Users/karenachu/gitLab/iterators_lab/test/each.js",
+		"/Users/karenachu/gitLab/iterators_lab/test/map.js",
+		"/Users/karenachu/Desktop/GA/new_project/test/test.js",
+		"/Users/karenachu/Desktop/GA/new_project/test/test/test.js",
+		"/Users/karenachu/gitLab/tictactoe_js/style.css",
+		"/Users/karenachu/gitLab/tictactoe_js/tictactoe.js",
+		"/Users/karenachu/gitLab/calculator.js",
+		"/Users/karenachu/gitLab/js_dom/DOMexercise.js",
+		"/Users/karenachu/Desktop/GA/Notes/11.20exercises.html",
+		"/Users/karenachu/Desktop/GA/Notes/11.20.js",
+		"/Users/karenachu/Desktop/GA/Notes/11.20exercises.js",
+		"/Users/karenachu/gitLab/FunctionsLab/primes.js",
+		"/Users/karenachu/gitLab/controlFlowLab/reverse.js",
+		"/Users/karenachu/gitLab/tempConvert.js",
+		"/Users/karenachu/gitLab/controlFlowLab/products.json",
+		"/Users/karenachu/gitLab/day_two_exercise.js",
+		"/Users/karenachu/gitLab/command_line_mystery/mystery/vehicles",
+		"/Users/karenachu/Desktop/about_me.html",
+		"/Users/karenachu/Desktop/GA/Karen/index.html",
+		"/Users/karenachu/Desktop/untitled.js",
+		"/Users/karenachu/Desktop/index.html",
+		"/Users/karenachu/Desktop/Karen Chu New Website/index.html",
+		"/Users/karenachu/Desktop/Karen Chu Website/style.css",
+		"/Users/karenachu/Desktop/carousel.html",
+		"/Users/karenachu/Desktop/Karen Chu Website/aboutme.html",
+		"/Users/karenachu/Desktop/Karen Chu Website/contact.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"mysql",
+			"!!!\n",
+			"annabel",
+			"topright",
+			"1300",
+			"1400"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 174.0,
+	"status_bar_visible": true
+}
