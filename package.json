@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "0.10.33"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -17,6 +20,7 @@
     "express": "^4.10.6",
     "express-validator": "*",
     "jade": "*",
+    "node": "0.0.0",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
     "pg": "^4.1.1",
