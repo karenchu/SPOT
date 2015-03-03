@@ -56,11 +56,6 @@ footer h2 {
     margin: .2em 0 .5em; 
 }
 
-/*footer h3 { 
-    font-size: 1.5em; 
-    margin: .2em 0 1em; 
-}*/
-
 footer .row:first-child { 
     border-bottom: 1px solid #222222; 
     border-bottom: 1px solid rgba(255,255,255,.1); 
