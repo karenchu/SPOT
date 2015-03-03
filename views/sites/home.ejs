@@ -13,6 +13,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="scrollup.js"></script>
 	<script type="text/javascript" src="scrolldown.js"></script>
+	    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
 </head>
 <body>
@@ -116,10 +118,14 @@
 						<input type="text" name="business" class="form-control" placeholder="business name or type">
 					</div>
 					<div class="form-group">
-						<input type="text" name="location" class="form-control" placeholder="location">
-					</div>
+						<input type="text" name="location" class="form-control" id="from" placeholder="location">
+					</div>  
 					<button class="btn btn-inverse">SEARCH</button>
 				</form>
+			</div>
+			<br>
+			<div class="text-center">
+				<a id="from-link" href="#"><u>Current Location</u></a>
 			</div>
 		</div>
 	</header>
@@ -151,6 +157,41 @@
 		L.mapbox.accessToken = 'pk.eyJ1Ijoib2NlYW5jaGlsZDYzNyIsImEiOiJxVkhhRTg4In0.Tt6s5ijiS4a3ElrxYg8sSg';
 		var map = L.mapbox.map('map', 'oceanchild637.l6bgnkcj')
 	</script>
+
+	<script>
+ $(document).ready(function() {
+        if (typeof navigator.geolocation == "undefined") {
+          $("#error").text("Your browser doesn't support the Geolocation API");
+          return;
+        }
+ 
+        $("#from-link").click(function(event) {
+          event.preventDefault();
+          var addressId = this.id.substring(0, this.id.indexOf("-"));
+ 
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({
+              "location": new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+            },
+            function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK)
+                $("#" + addressId).val(results[0].formatted_address);
+              else
+                $("#error").append("Unable to retrieve your address<br />");
+            });
+          },
+          function(positionError){
+            $("#error").append("Error: " + positionError.message + "<br />");
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 10 * 1000 // 10 seconds
+          });
+        });
+
+      });
+    </script>
 
 </body>
 </html>

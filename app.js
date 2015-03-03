@@ -154,7 +154,8 @@ app.get("/results", function (req, res) {
 		})
 
 	});
-});
+
+	});
 
 app.post("/results/:yelp_id", function (req, res) {
 
@@ -179,6 +180,21 @@ app.post("/results/:yelp_id", function (req, res) {
 			}).then(function() {
 				res.redirect(referer);
 			});
+		}
+	})
+
+	db.Rating.find({
+		where: {
+			yelp_id: yelpId
+		}
+	}).then(function (result) {
+		if (result){
+			result.Rating = 
+			result.save().then(function (loc) {
+				res.redirect(referer);
+			});
+		} else {
+
 		}
 	})
 

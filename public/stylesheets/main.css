@@ -273,6 +273,10 @@ a:hover {
     background-size: cover;
 }
 
+#okicon {
+    width: 3%;
+}
+
 #logged {
     color: #FD661E;
 }
@@ -281,7 +285,7 @@ a:hover {
     text-align: center;
     padding: 0 0 0 0;
     border: 0 0 0 0;
-    margin: -50% 10% 100% 10%;
+    margin: -40% 10% 100% 10%;
 }
 
 #map { 
@@ -290,14 +294,11 @@ a:hover {
     width: 80%; 
 }
 
-/*u {    
+u {    
     border-bottom: 1px dotted #000;
     text-decoration: none;
 }
 
-
-
-*/
 .animated {
     -webkit-animation: 1s ease;
        -moz-animation: 1s ease;

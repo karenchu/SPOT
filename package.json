@@ -1,7 +1,6 @@
 {
   "name": "SPOT",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,8 +26,17 @@
     "passport-local": "^1.0.0",
     "pg": "^4.1.1",
     "pg-hstore": "^2.3.1",
-    "sequelize": "^2.0.0-rc3",
+    "sequelize": "^2.0.3",
     "sequelize-cli": "^1.0.4",
     "yelp": "^0.1.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karenchu/SPOT.git"
+  },
+  "bugs": {
+    "url": "https://github.com/karenchu/SPOT/issues"
+  },
+  "homepage": "https://github.com/karenchu/SPOT"
 }
