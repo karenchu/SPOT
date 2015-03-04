@@ -1,10 +1,16 @@
 var express = require("express"),
+	bcrypt = require("bcrypt"),
 	bodyParser = require("body-parser"),
 	db = require("./models"),
   	passport = require("passport"),
   	session = require("cookie-session"),
   	cheerio = require("cheerio"),
+  	ejs = require("ejs"),
+  	expressValidator=require("express-validator"),
+  	pgHstore = require("pg-hstore"),
+  	Sequelize = require("sequelize"),
 	app = express();
+
 
 var yelp = require("yelp").createClient({
 	consumer_key: 		"sOwjvBvlFOMkyq9NDg7UTg", 
@@ -150,17 +156,16 @@ app.get("/results", function (req, res) {
 			res.render("sites/results", {
 					user: 		req.user, 
 					locations: 	remappedResults
-				});
+			});
 		})
-
 	});
-
-	});
+});
 
 app.post("/results/:yelp_id", function (req, res) {
 
 	var dogsTrue 	= req.body.dogs == "true" ? true: false;
 	var yelpId 		= req.params.yelp_id; 
+	var userId		= req.params.user_id;
 	var referer 	= req.get("referer");
 
 	db.dogfriendly.find({
@@ -185,19 +190,24 @@ app.post("/results/:yelp_id", function (req, res) {
 
 	db.Rating.find({
 		where: {
-			yelp_id: yelpId
+			yelp_id: yelpId,
+			user_id: userId
 		}
 	}).then(function (result) {
 		if (result){
-			result.Rating = 
+			result.Rating = [];
 			result.save().then(function (loc) {
 				res.redirect(referer);
 			});
 		} else {
-
+			db.Rating.create({
+				yelp_id: yelpId,
+				user_id: userId 
+			}).then(function() {
+				res.redirect(referer);
+			});
 		}
 	})
-
 })
 
 app.listen(process.env.PORT || 3000, function() {
