@@ -115,8 +115,6 @@ app.get("/", function (req, res) {
 	res.render("sites/home");	
 });
 
-
-
 app.get("/about", function (req, res) {
 	if(req.user) {
 		res.render("sites/about", {user: req.user});
@@ -158,14 +156,30 @@ app.get("/results", function (req, res) {
 					locations: 	remappedResults
 			});
 		})
+		// db.rating.findAll({
+		// 	where: {
+		// 		yelp_id: businessIds,
+		// 		user_id: userIds
+		// 	}
+		// }).then(function (results) {
+		// 	results.map(function (result) {
+		// 		console.log(result.rating)
+		// 		remappedResults[result.yelp_id].ratingRes = result.rating;
+		// 	});
+		// 	res.render("sites/results", {
+		// 		user: 		req.user, 
+		// 		locations: 	remappedResults
+		// 	});
+		// })
 	});
 });
 
 app.post("/results/:yelp_id", function (req, res) {
 
 	var dogsTrue 	= req.body.dogs == "true" ? true: false;
+	// var ratingNum	= req.body.ratingInput;
 	var yelpId 		= req.params.yelp_id; 
-	var userId		= req.params.user_id;
+	// var userId		= req.params.user_id;
 	var referer 	= req.get("referer");
 
 	db.dogfriendly.find({
@@ -188,26 +202,27 @@ app.post("/results/:yelp_id", function (req, res) {
 		}
 	})
 
-	db.Rating.find({
-		where: {
-			yelp_id: yelpId,
-			user_id: userId
-		}
-	}).then(function (result) {
-		if (result){
-			result.Rating = [];
-			result.save().then(function (loc) {
-				res.redirect(referer);
-			});
-		} else {
-			db.Rating.create({
-				yelp_id: yelpId,
-				user_id: userId 
-			}).then(function() {
-				res.redirect(referer);
-			});
-		}
-	})
+	// db.rating.find({
+	// 	where: {
+	// 		yelp_id: yelpId,
+	// 		user_id: userId
+	// 	}
+	// }).then(function (result) {
+	// 	if (result){
+	// 		result.rating = ratingNum;
+	// 		result.save().then(function (loc) {
+	// 			res.redirect(referer);
+	// 		});
+	// 	} else {
+	// 		db.rating.create({
+	// 			yelp_id: yelpId,
+	// 			user_id: userId,
+	// 			rating:  ratingNum 
+	// 		}).then(function() {
+	// 			res.redirect(referer);
+	// 		});
+	// 	}
+	// })
 })
 
 app.listen(process.env.PORT || 3000, function() {

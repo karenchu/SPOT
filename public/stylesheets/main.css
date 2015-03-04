@@ -294,6 +294,12 @@ u {
     text-decoration: none;
 }
 
+#rightside {
+    margin-top: -30%;
+    margin-bottom: 10%;
+    margin-left: 40%;
+}
+
 .animated {
     -webkit-animation: 1s ease;
        -moz-animation: 1s ease;

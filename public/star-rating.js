@@ -499,4 +499,5 @@
             $input.rating();
         }
     });
+
 }(window.jQuery));

@@ -124,10 +124,13 @@
 		 	<div class="row"></div>
 
 			<div class="container">
-				<h2>Search Results</h2>
+				<h2>Search Results. Search <a href="/" target="_" id="here">Again</a>.</h2>
 				    <ol>
 					    <% for (var yelpId in locations) { %>
 					    	<% var location = locations[yelpId] %>
+						<div class="container" id="leftside">
+							<div class="row">
+  <div class="col-xs-6">
 						<div>
 							<h4><li><a href="<%= location.url %>" target="_"><%= location.name %></a></h4>
 				    	</div>
@@ -144,11 +147,7 @@
 								<%= location.location.city %>, <%= location.location.state_code %> <%= location.location.postal_code %><br>
 								<%= location.location.country_code %>
 					    	</div>
-					    	<div>
-					    		<iframe width="600" height="450" frameborder="0" style="border:0"
-src="https://www.google.com/maps/embed/v1/place?q=<%= location.location.coordinate.latitude %>,<%= location.location.coordinate.longitude %>&key=AIzaSyArPJYZQ-tKjBJlUboor9Lr_2Y36VlfhDU"></iframe>
-
-					    	</div>
+					    	
 					    	<div>
 								<b>Neighborhood(s):</b> <%= location.location.neighborhoods %>
 					    	</div>
@@ -157,13 +156,13 @@ src="https://www.google.com/maps/embed/v1/place?q=<%= location.location.coordina
 					    	</div>
 
 					    	<div>
-					    		<b>Dog Friendly?</b>
-					    		<% if (location.friendly) { %> 
-					    			<img id="okicon" src="http://i.imgur.com/Zo2AnGp.png"/>
-								<% } %>
+					    		<b>Dogs Allowed?</b>
+								<% if (user) { %>
+									<% if (location.friendly) { %> 
+					    				<img id="okicon" src="http://i.imgur.com/Zo2AnGp.png"/>
+									<% } %>
 							</div>
 							<br>
-								<% if (user) { %>
 								<form name="dogfriendly" action="/results/<%= location.id %>" method="post">
 						    		<label class="radio-inline">
 										<input type="radio" name="dogs" id="dogs_OK" value="true"/> <div>YES</div>
@@ -175,20 +174,31 @@ src="https://www.google.com/maps/embed/v1/place?q=<%= location.location.coordina
 									<br>
 									<button class="btn btn-default-inverse" type="submit">Save</button>
 								</form>
-
+<br>
+<b>Dog Friendliness?</b>
 <div class="container">
-	<form>
-	    <input id="input-2ba" type="number" class="rating" min="0" max="5" step="0.5" data-stars=5
-	    data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}">  
+	<form name="starRating" action="/results/<%= location.id %>" method="post">
+	    <input id="input-2ba" name="ratingInput" type="number" class="rating" min="0" max="5" step="0.5" data-stars=5 data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}">  
 	</form>
 </div>
 
 								<% } else { %>
 									<div>
-						    			<a href="/login">LOG IN</a> to see if it's dog friendly.
+						    			<br><a href="/login"><u>LOGIN</u></a> to see if it's dog friendly.
 						    		</div>
 								<% } %>	
 					    </div>
+					</div>
+				</div>
+			</div>
+			<div class="container" id="rightside">
+  				<div class="col-xs-6">
+					<div>
+					    <iframe width="600" height="450" frameborder="0" style="border:0"
+						src="https://www.google.com/maps/embed/v1/place?q=<%= location.location.coordinate.latitude %>,<%= location.location.coordinate.longitude %>&key=AIzaSyArPJYZQ-tKjBJlUboor9Lr_2Y36VlfhDU"></iframe>
+					</div>
+				</div>
+			</div>
 					   	<% } %>
 							</li>
 					</ol>
@@ -225,78 +235,78 @@ src="https://www.google.com/maps/embed/v1/place?q=<%= location.location.coordina
 		var map = L.mapbox.map('map', 'oceanchild637.l6bgnkcj')
 	</script>
 	<script>
- function calculateRoute(from, to) {
-        // Center initialized to Naples, Italy
-        var myOptions = {
-          zoom: 10,
-          center: new google.maps.LatLng(40.84, 14.25),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        // Draw the map
-        var mapObject = new google.maps.Map(document.getElementById("gmap"), myOptions);
- 
-        var directionsService = new google.maps.DirectionsService();
-        var directionsRequest = {
-          origin: from,
-          destination: to,
-          travelMode: google.maps.DirectionsTravelMode.DRIVING,
-          unitSystem: google.maps.UnitSystem.METRIC
-        };
-        directionsService.route(
-          directionsRequest,
-          function(response, status)
-          {
-            if (status == google.maps.DirectionsStatus.OK)
-            {
-              new google.maps.DirectionsRenderer({
-                map: mapObject,
-                directions: response
-              });
-            }
-            else
-              $("#error").append("Unable to retrieve your route<br />");
-          }
-        );
-      }
- 
-      $(document).ready(function() {
-        // If the browser supports the Geolocation API
-        if (typeof navigator.geolocation == "undefined") {
-          $("#error").text("Your browser doesn't support the Geolocation API");
-          return;
-        }
- 
-        $("#from-link, #to-link").click(function(event) {
-          event.preventDefault();
-          var addressId = this.id.substring(0, this.id.indexOf("-"));
- 
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({
-              "location": new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-            },
-            function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK)
-                $("#" + addressId).val(results[0].formatted_address);
-              else
-                $("#error").append("Unable to retrieve your address<br />");
-            });
-          },
-          function(positionError){
-            $("#error").append("Error: " + positionError.message + "<br />");
-          },
-          {
-            enableHighAccuracy: true,
-            timeout: 10 * 1000 // 10 seconds
-          });
-        });
- 
-        $("#calculate-route").submit(function(event) {
-          event.preventDefault();
-          calculateRoute($("#from").val(), $("#to").val());
-        });
-      });
-</script>
+	 	function calculateRoute(from, to) {
+	        // Center initialized to Naples, Italy
+	        var myOptions = {
+	          zoom: 10,
+	          center: new google.maps.LatLng(40.84, 14.25),
+	          mapTypeId: google.maps.MapTypeId.ROADMAP
+	        };
+	        // Draw the map
+	        var mapObject = new google.maps.Map(document.getElementById("gmap"), myOptions);
+	 
+	        var directionsService = new google.maps.DirectionsService();
+	        var directionsRequest = {
+	          origin: from,
+	          destination: to,
+	          travelMode: google.maps.DirectionsTravelMode.DRIVING,
+	          unitSystem: google.maps.UnitSystem.METRIC
+	        };
+	        directionsService.route(
+	          directionsRequest,
+	          function(response, status)
+	          {
+	            if (status == google.maps.DirectionsStatus.OK)
+	            {
+	              new google.maps.DirectionsRenderer({
+	                map: mapObject,
+	                directions: response
+	              });
+	            }
+	            else
+	              $("#error").append("Unable to retrieve your route<br />");
+	          }
+	        );
+	      }
+	 
+	      $(document).ready(function() {
+	        // If the browser supports the Geolocation API
+	        if (typeof navigator.geolocation == "undefined") {
+	          $("#error").text("Your browser doesn't support the Geolocation API");
+	          return;
+	        }
+	 
+	        $("#from-link, #to-link").click(function(event) {
+	          event.preventDefault();
+	          var addressId = this.id.substring(0, this.id.indexOf("-"));
+	 
+	          navigator.geolocation.getCurrentPosition(function(position) {
+	            var geocoder = new google.maps.Geocoder();
+	            geocoder.geocode({
+	              "location": new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+	            },
+	            function(results, status) {
+	              if (status == google.maps.GeocoderStatus.OK)
+	                $("#" + addressId).val(results[0].formatted_address);
+	              else
+	                $("#error").append("Unable to retrieve your address<br />");
+	            });
+	          },
+	          function(positionError){
+	            $("#error").append("Error: " + positionError.message + "<br />");
+	          },
+	          {
+	            enableHighAccuracy: true,
+	            timeout: 10 * 1000 // 10 seconds
+	          });
+	        });
+	 
+	        $("#calculate-route").submit(function(event) {
+	          event.preventDefault();
+	          calculateRoute($("#from").val(), $("#to").val());
+	        });
+	    });
+	</script>
 
 </body>
 </html>
