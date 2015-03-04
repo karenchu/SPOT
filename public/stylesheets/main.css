@@ -299,10 +299,14 @@ u {
     text-decoration: none;
 }
 
+#leftside {
+    margin-left: -3%;
+}
+
 #rightside {
     margin-top: -30%;
     margin-bottom: 10%;
-    margin-left: 40%;
+    margin-left: 45%;
 }
 
 .animated {
