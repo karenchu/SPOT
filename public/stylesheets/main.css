@@ -212,7 +212,6 @@ a:hover {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 1401px;
 }
 
 #instructions {
@@ -223,6 +222,12 @@ a:hover {
 #screenshots {
     width: 25%;
     height: 25%;
+    padding: 10px;
+    border: black solid;
+    border-width: thin;
+}
+
+#screenshots4 {
     padding: 10px;
     border: black solid;
     border-width: thin;
