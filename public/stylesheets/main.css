@@ -709,14 +709,14 @@ ul, menu, dir {
     }*/
 
     .footer-inner {
-        height: 400px;
+        height: 500px;
     }
 
     #map { 
         position: absolute;
-        height: 500px; 
+        height: 600px; 
         width: 310px; 
-        margin-top: -15em;
+        margin-top: -20em;
     }
 
     iframe {
