@@ -10,6 +10,6 @@
     "dialect": "postgres"
   },
   "production": {
-    "use_env_variable": "HEROKU_POSTGRESQL_NAVY_URL"
+    "use_env_variable": "HEROKU_POSTGRESQL_SILVER_URL"
   }
 }
