@@ -1,7 +1,9 @@
-body {
+html, body {
 	margin: 0 auto;
 	font-family: 'Lato', sans-serif;
     color: black;
+    width: auto !important;
+    overflow-x: hidden !important;
 }
 
 /* Header Specific */
@@ -273,6 +275,10 @@ a:hover {
     background-size: cover;
 }
 
+h2 {
+    text-align: center;
+}
+
 #okicon {
     width: 3%;
 }
@@ -292,6 +298,7 @@ a:hover {
     position: absolute;
     height: 170%; 
     width: 80%; 
+    margin-top: -5em;
 }
 
 u {    
@@ -304,9 +311,29 @@ u {
 }
 
 #rightside {
-    margin-top: -30%;
+    margin-top: -65%;
     margin-bottom: 10%;
-    margin-left: 45%;
+    margin-left: 95%;
+}
+
+#icon1 {
+    height: 30px;
+}
+
+#icon2 {
+    height: 40px;
+}
+
+#icon3 {
+    height: 50px;
+}
+
+#icon4 {
+    height: 40px;
+}
+
+#icon5 {
+    height: 40px;
 }
 
 .animated {
@@ -539,3 +566,198 @@ u {
         transform: translateY(20px);
     }
 }
+
+ul, menu, dir {
+  display: block;
+  list-style-type: disc;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 40px;
+}
+
+/* Smaller screens */
+
+@media only screen and (max-width: 1023px) {
+
+    body {
+        font-size: 1.5em;
+    /* line-height: 1.6em; */
+    }
+
+    header nav { 
+        margin: 0 auto; 
+        text-align: center; 
+    }
+
+    .logo {
+        font-size: 17em;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+
+    .row, body, .container {
+        width: 100%;
+        min-width: 0;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    
+    .row .fourcol, .row .fivecol, .row .sixcol, .row .twelvecol {
+        width: auto;
+        float: none;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .fixed-bar nav li a { 
+        font-size: 0.85em;
+    }
+
+    #navwidth {
+        width: 980px;
+        height: 80px;
+    }
+
+    .fixed-bar #back-to-top { 
+    margin-top: -0.5em;
+    }
+
+/*    #rightside {
+        margin-top: -35%;
+        margin-bottom: 20%;
+        margin-left: 45%;
+    }*/
+
+    #map { 
+        position: absolute;
+        height: 1000px; 
+        width: 750px; 
+        margin-top: -20em;
+    }
+    
+}
+
+
+/* Mobile */
+
+@media handheld, only screen and (max-width: 767px) {
+
+    body {
+/*    font-size: 16px;*/    
+    font-size: 1.2em;
+    /* font-size: 0.em;
+    line-height: 1.5em; */
+    -webkit-text-size-adjust: none;
+    }
+
+    header nav { 
+    margin: 0 auto; 
+    text-align: center; 
+    }
+
+    .logo {
+        font-size: 12em;
+    }
+    
+    h2 {
+        font-size: 2em;
+        text-align: center;
+    }
+
+    #navwidth {
+        width: 410px;
+        height: 170px;
+    }
+
+    .fixed-bar nav li a { 
+        font-size: 10px;
+    }
+
+    .fixed-bar #back-to-top { 
+        margin-top: 10em;
+    }
+
+    /*.row, body, .container {
+    width: 100%;
+    min-width: 0;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    }
+    
+    .row .fourcol, .row .fivecol, .row .sixcol, .row .twelvecol {
+    width: auto;
+    float: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    }*/
+
+    #map { 
+        position: absolute;
+        height: 800px; 
+        width: 335px; 
+        margin-top: -40em;
+    }
+
+    iframe {
+        width: 500%;
+        height: 200px;
+    }
+    
+    #rightside {
+        margin-top: -300%;
+        margin-bottom: 180%;
+        margin-left: 100%;
+    }
+
+}
+/*@media (min-width: 400px) and (max-width: 599px) {
+    html { background: red; }
+    header nav { 
+    margin: 0 auto; }
+}*/
+/*@media (min-width: 600px) and (max-width: 799px) {
+    html { background: green; }
+    header nav { 
+    margin: 0 auto; }
+}
+@media (min-width: 800px) {
+    html { background: blue; }
+    header nav { 
+    margin: 0; }
+    header nav li a { 
+    padding: 3.5em 1.5em; }
+    #spothq {
+    text-align: center;
+    padding: 0 0 0 0;
+    border: 0 0 0 0;
+    margin: -40% 10% 100% 10%;}
+    #map { 
+    position: absolute;
+    height: 100%; 
+    width: 80%; }
+    .fixed-bar nav li a { 
+    margin: 0 1.3em 0 0; 
+    float: left; 
+    -webkit-transition: color .3s linear; }
+    .fixed-bar #back-to-top { 
+    float: right; 
+    margin-bottom: .8em; 
+    margin-right: 11.5em;
+    width: 15px; 
+    height: 24px; 
+    background: url('http://i.imgur.com/qFhqNWA.png') no-repeat 0 0; 
+    text-indent: -9999px; }
+}*/

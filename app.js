@@ -9,6 +9,7 @@ var express = require("express"),
   	expressValidator=require("express-validator"),
   	pgHstore = require("pg-hstore"),
   	Sequelize = require("sequelize"),
+  	async = require("async"),
 	app = express();
 
 
@@ -150,45 +151,82 @@ app.get("/results", function (req, res) {
 			results.map(function (result) {
 				console.log(result.dog_friendly)
 				remappedResults[result.yelp_id].friendly = result.dog_friendly;
-			});
-			res.render("sites/results", {
-					user: 		req.user, 
-					locations: 	remappedResults
-			});
-		})
-		// db.rating.findAll({
-		// 	where: {
-		// 		yelp_id: businessIds,
-		// 		user_id: userIds
-		// 	}
-		// }).then(function (results) {
-		// 	results.map(function (result) {
-		// 		console.log(result.rating)
-		// 		remappedResults[result.yelp_id].ratingRes = result.rating;
-		// 	});
-		// 	res.render("sites/results", {
-		// 		user: 		req.user, 
-		// 		locations: 	remappedResults
-		// 	});
+			}),
+
+			// async.each(results, function (result, done) {
+			// 	console.log("meep")
+			// 	db.Amenity.find({
+			// 		where: {
+			// 			yelp_id: result.yelp_id
+			// 		}
+			// 	}).then(function (amenity) {
+			// 	console.log("MEEP!");
+			// 		remappedResults[result.yelp_id].treat = amenity.treat;
+			// 		remappedResults[result.yelp_id].water = amenity.water;
+			// 		remappedResults[result.yelp_id].bed = amenity.bed;
+			// 		remappedResults[result.yelp_id].cut = amenity.cut;
+			// 		remappedResults[result.yelp_id].bath = amenity.bath;
+			// 	}),
+
+
+			// async.each(results, function (result, done){
+			// 	console.log("find")
+			// 	db.Rating.find({
+			// 		where: {
+			// 			yelp_id: result.yelp_id
+			// 		}
+			// 	}).then(function (rating) {
+			// 	console.log("FINISHED SEARCHING!!!!");
+			// 		remappedResults[result.yelp_id].ratingObj = rating ? rating.dataValues: null;
+			// 		done();
+			// 	}),
+			// 	function () {
+			// 	console.log("RENDERING", remappedResults);
+					res.render("sites/results", {
+							user: 		req.user, 
+							locations: 	remappedResults
+					});
+				// }
+			})
+			// })
 		// })
+
 	});
 });
 
 app.post("/results/:yelp_id", function (req, res) {
 
 	var dogsTrue 	= req.body.dogs == "true" ? true: false;
-	// var ratingNum	= req.body.ratingInput;
+	// var treatsTrue  = req.body.treats == "true" ? true: false;
+	// var waterTrue   = req.body.water == "true" ? true: false;
+	// var bedsTrue    = req.body.beds == "true" ? true: false;
+	// var cutsTrue    = req.body.cuts == "true" ? true: false;
+	// var bathsTrue   = req.body.baths == "true" ? true: false;
+
+	// var rating 		= Math.floor(req.body.rating);
 	var yelpId 		= req.params.yelp_id; 
-	// var userId		= req.params.user_id;
 	var referer 	= req.get("referer");
+
+	// console.log("RATING IS:", rating)
 
 	db.dogfriendly.find({
 		where: {
 			yelp_id: yelpId
 		}
 	}).then(function (result) {
+		// db.Amenity.find({
+		// 	where: {
+		// 		yelp_id: yelpId
+		// 	}
+		// });
+s
 		if (result){
 			result.dog_friendly = dogsTrue;
+			// result.treat = treatsTrue;
+			// result.water = waterTrue;
+			// result.bed = bedsTrue;
+			// result.cut = cutsTrue;
+			// result.bath = bathsTrue;
 			result.save().then(function (loc) {
 				res.redirect(referer);
 			});
@@ -196,34 +234,50 @@ app.post("/results/:yelp_id", function (req, res) {
 			db.dogfriendly.create({
 				yelp_id: 		yelpId,
 				dog_friendly: 	dogsTrue
+			// });
+			// db.Amenity.create({
+			// 	yelp_id: yelpId,
+			// 	treat: treatsTrue,
+			// 	water: waterTrue,
+			// 	bed: bedsTrue,
+			// 	cut: cutsTrue,
+			// 	bath: bathsTrue
 			}).then(function() {
 				res.redirect(referer);
 			});
 		}
 	})
 
-	// db.rating.find({
-	// 	where: {
-	// 		yelp_id: yelpId,
-	// 		user_id: userId
-	// 	}
+	// db.Amenity.find({
+	// 		where: {
+	// 			yelp_id: yelpId
+	// 		}
 	// }).then(function (result) {
 	// 	if (result){
-	// 		result.rating = ratingNum;
+	// 		result.treat = treatsTrue;
+	// 		result.water = waterTrue;
+	// 		result.bed = bedsTrue;
+	// 		result.cut = cutsTrue;
+	// 		result.bath = bathsTrue;
 	// 		result.save().then(function (loc) {
 	// 			res.redirect(referer);
 	// 		});
 	// 	} else {
-	// 		db.rating.create({
+	// 		db.Amenity.create({
 	// 			yelp_id: yelpId,
-	// 			user_id: userId,
-	// 			rating:  ratingNum 
+	// 			treat: treatsTrue,
+	// 			water: waterTrue,
+	// 			bed: bedsTrue,
+	// 			cut: cutsTrue,
+	// 			bath: bathsTrue
 	// 		}).then(function() {
 	// 			res.redirect(referer);
 	// 		});
 	// 	}
 	// })
+
 })
+
 
 app.listen(process.env.PORT || 3000, function() {
 	console.log(new Array("*").join());

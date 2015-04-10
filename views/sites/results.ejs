@@ -29,7 +29,28 @@
 			} else(document.getElementById('NO_dogs').checked) {
 		};
 
+
+		if(document.getElementById('treats_OK').checked) {
+		};
+
+
+		if(document.getElementById('water_OK').checked) {
+		};
+
+
+		if(document.getElementById('beds_OK').checked) {
+		};
+
+
+		if(document.getElementById('cuts_OK').checked) {
+		};
+
+
+		if(document.getElementById('baths_OK').checked) {
+		};
+
 		var checked = checked === true;
+
 	</script>
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
 <body>
@@ -123,14 +144,20 @@
 
 		 	<div class="row"></div>
 
-			<div class="container">
+		 	<div class="row">
 				<h2>Search Results. Search <a href="/" target="_" id="here">Again</a>.</h2>
+			</div>
+<br><br>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-6">
+
 				    <ol>
 					    <% for (var yelpId in locations) { %>
 					    	<% var location = locations[yelpId] %>
 						<div class="container" id="leftside">
 							<div class="row">
-  								<div class="col-xs-6">
 						<div>
 							<h4><li><a href="<%= location.url %>" target="_"><u><%= location.name %></u></a></h4>
 				    	</div>
@@ -174,11 +201,97 @@
 									<br>
 									<button class="btn btn-default-inverse" type="submit">Save</button>
 								</form>
-<br>
+							<br>
+							<b>Dog Amenities:</b>
+							<div class="container">
+								<% if (location.treat) { %>
+									<img src="http://i.imgur.com/z6qsM6D.png" id="icon1"/>
+								<% } %>
+								<% if (location.water) { %>
+									<img src="http://i.imgur.com/Hr5KPrJ.png" id="icon2"/>
+								<% } %>
+								<% if (location.bed) { %>
+									<img src="http://i.imgur.com/Cgi9I5u.png" id="icon3"/>
+								<% } %>
+								<% if (location.cut) { %>
+									<img src="http://i.imgur.com/DNuw0jH.png" id="icon4"/>
+								<% } %>
+								<% if (location.bath) { %>
+									<img src="http://i.imgur.com/enI7tJj.png" id="icon5"/>
+								<% } %>
+							</div>
+							<br>
+								
+								<form name="dogAmenities" action="/results/<%= location.id %>" method="post">
+									<input type="Checkbox" name="treats" id="treats_OK" value="true">Treats
+<input type="Checkbox" name="water" id="water_OK" value="true">Water
+<input type="Checkbox" name="beds" id="beds_OK" value="true">Beds
+<input type="Checkbox" name="cuts" id="cuts_OK" value="true">Cuts
+<input type="Checkbox" name="baths" id="baths_OK" value="true">Baths
+<!-- Treats:
+ -->									<!-- <label class="radio-inline">
+										<input type="radio" name="treats" id="treats_OK" value="true"/> <div>YES</div>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="treats" id="NO_treats" value="false"/> <div>NO</div>
+									</label>
+									<br>
+									<br>
+							<br>
+								Water Bowl(s):
+									<label class="radio-inline">
+										<input type="radio" name="amenities" id="water_OK" value="true"/> <div>YES</div>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="amenities" id="NO_water" value="false"/> <div>NO</div>
+									</label>
+									<br>
+									<br>
+									<button class="btn btn-default-inverse" type="submit">Save</button>
+							<br>
+								Bed(s):
+									<label class="radio-inline">
+										<input type="radio" name="amenities" id="beds_OK" value="true"/> <div>YES</div>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="amenities" id="NO_beds" value="false"/> <div>NO</div>
+									</label>
+									<br>
+									<br>
+									<button class="btn btn-default-inverse" type="submit">Save</button>
+							<br>
+								Cuts:
+									<label class="radio-inline">
+										<input type="radio" name="amenities" id="cuts_OK" value="true"/> <div>YES</div>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="amenities" id="NO_cuts" value="false"/> <div>NO</div>
+									</label>
+									<br>
+									<br>
+									<button class="btn btn-default-inverse" type="submit">Save</button>
+							<br>
+								Bath(s):
+									<label class="radio-inline">
+										<input type="radio" name="amenities" id="baths_OK" value="true"/> <div>YES</div>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="amenities" id="NO_baths" value="false"/> <div>NO</div>
+									</label> -->
+									<br>
+									<br>
+									<button class="btn btn-default-inverse" type="submit">Save</button>
+								</form>
+							<br>
 <b>Dog Friendliness?</b>
 <div class="container">
-	<form name="starRating" action="/results/<%= location.id %>" method="post">
-	    <input id="input-2ba" name="ratingInput" type="number" class="rating" min="0" max="5" step="0.5" data-stars=5 data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}">  
+	<form name="starRating" action="/results/<%= location.id %>" method="post" id="rateDog">
+		<div id="rating">
+	    <input id="input-2ba" name="ratingInput" type="number" class="rating" min="0" max="5" step="1" data-stars=5 data-symbol="&#xe005;" data-default-caption="<%= location.ratingObj ? location.ratingObj.rating : location.rating %> hearts">  
+	</div>
+	    <div>
+	    	<button class='btn btn-primary'>Save</button>
+	    </div>
 	</form>
 </div>
 
@@ -207,30 +320,49 @@
 		</div>
 	</header>
 
-	<footer>
+	  <footer>
         <div class="footer-inner">
-            <div class="container">
-            	<div class="contact">
-            		<span class="site-address">SPOT, 123 5th Avenue, San Francisco, CA 54321</span>
-            		<span rel="tel" class="site-phone">415-555-1212</span>
-            		<a href="mailto:spot@spot.com" class="site-email">spot@spot.com</a></div>
-          		</div>
-	        </div>
+              <div class="container">
+                <div class="contact">
+                  <span class="site-address">SPOT, 123 5th Avenue, San Francisco, CA 54321</span>
+                  <span rel="tel" class="site-phone">415-555-1212</span>
+                  <a href="mailto:spot@spot.com" class="site-email">spot@spot.com</a></div>
+                </div>
+            </div>
+            <div class="container" id="spothq">
+            <div id="map"></div>
+        </div>
 
-	        <div class="container" id="spothq">
-		    	<div id="map"></div>
-			</div>
-
-	        <div class="container">
-          		<div class="row small"></div>
-					<div class="twelvecol">
-						<small>Copyright &copy; 2015, Karen Chu</small>
-					</div>
-			</div>
-		</div>
+          <div class="container">
+              <div class="row small"></div>
+          <div class="twelvecol">
+            <small>Copyright &copy; 2015, Karen Chu</small>
+          </div>
+      </div>
+    </div>
     </footer>
 
 	<script>
+	$(function (){ 
+		console.log("RUNNING !@!!@#")
+		console.log(document.getElementById("input-2ba"));
+		$("#rateDog").on("submit", function (e) {
+			console.log(this);
+			var ratingEl = this.querySelector(".rating-container .rating-stars");
+			var rating = Number(ratingEl.style.width.replace(/%/, ""))/100*5;
+			console.log(rating);
+			var $input = $("<input>");
+			$input.attr("name", "rating");
+			$input.attr("type", "hidden")
+			$input.val(rating)
+			$(this).append($input);
+			console.log(this)
+		});
+    $('#input-2ba').on('rating.change', function(event, value, caption) {
+        console.log(value);
+        console.log(caption);
+    });
+});
 		L.mapbox.accessToken = 'pk.eyJ1Ijoib2NlYW5jaGlsZDYzNyIsImEiOiJxVkhhRTg4In0.Tt6s5ijiS4a3ElrxYg8sSg';
 		var map = L.mapbox.map('map', 'oceanchild637.l6bgnkcj')
 	</script>
