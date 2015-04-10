@@ -664,8 +664,12 @@ ul, menu, dir {
     text-align: center; 
     }
 
+    #home {
+        height: 700px;
+    }
+
     .logo {
-        font-size: 12em;
+        font-size: 8em;
     }
     
     h2 {
@@ -674,12 +678,12 @@ ul, menu, dir {
     }
 
     #navwidth {
-        width: 410px;
+        width: 400px;
         height: 170px;
     }
 
     .fixed-bar nav li a { 
-        font-size: 10px;
+        font-size: 9px;
     }
 
     .fixed-bar #back-to-top { 
@@ -704,11 +708,15 @@ ul, menu, dir {
     padding-right: 20px;
     }*/
 
+    .footer-inner {
+        height: 400px;
+    }
+
     #map { 
         position: absolute;
-        height: 800px; 
-        width: 335px; 
-        margin-top: -40em;
+        height: 500px; 
+        width: 310px; 
+        margin-top: -15em;
     }
 
     iframe {
